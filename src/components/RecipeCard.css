@@ -1,0 +1,126 @@
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 52px;
+  width: 362px;
+  height: 24px;
+}
+
+.title {
+  width: 96px;
+  height: 17px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+}
+
+.sharing-icons {
+  display: flex;
+  gap: 5px;
+}
+
+.sharing-icons > svg{
+  cursor: pointer
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  gap: 14px;
+  width: 342px;
+  background: #17cfc4;
+  box-shadow: 0px 10px 30px 3px rgba(5, 16, 55, 0.15);
+  border-radius: 6px;
+  color: black;
+}
+
+.diff-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.difficulty {
+  width: 155px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #0d1119;
+  margin: 0;
+}
+
+.view-button {
+  width: 302px;
+  height: 40px;
+  background: #1d2a43;
+  border-radius: 6px;
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 13px 24px;
+  gap: 12px 24px;
+  width: 362px;
+  background: #131823;
+  box-shadow: 0px 2px 6px rgba(5, 16, 55, 0.1);
+  border-radius: 6px;
+}
+
+.first-set {
+  margin-top: 1px;
+}
+
+.last-set {
+  margin-bottom: 1px;
+}
+
+.ingredient {
+  height: 44px;
+  text-align: start;
+}
+
+.ingredients-label {
+  margin: 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 24px;
+  color: #7185aa;
+}
+
+.ingredient-value {
+  margin: 0;
+}
+
+.produce {
+  background: linear-gradient(136.39deg, #2bf1e5 3.18%, #40e33d 102.04%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.gradient {
+  background: linear-gradient(136.39deg, #ffbf43 3.18%, #ff4869 102.04%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
