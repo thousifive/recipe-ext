@@ -1,3 +1,5 @@
+## A chrome extension template for recipes.
+
 ### Setup Process:
 1. Download extension [here].
 2. Extract the zip file.
