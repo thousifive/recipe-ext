@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropdownMenu from "./DropdownMenu";
 import RecipeCard from "./RecipeCard";
+import SearchBar from "./SearchBar";
 import "./Dish.css";
 
 const recList = [
@@ -49,12 +50,29 @@ const recList = [
 ];
 
 const Dish = () => {
-  const [selectedDish, setSelectedDish] = useState(recList[0]);
+  const [recipes, setRecipes] = useState([]);
+  const [selectedDish, setSelectedDish] = useState({});
+
+  const getRecipes = async() => {
+    try {
+      const data = await fetch('https://master-7rqtwti-yj2le3kr2yhmu.uk-1.platformsh.site/yumazoo/recipes').then(res=> res.json());
+      setRecipes(data.message);
+      setSelectedDish(data.message[0]);
+    }
+    catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    getRecipes();
+  }, [])
 
   return (
     <div className="container">
-      <DropdownMenu recipes={recList} setSelectedDish={setSelectedDish} />
-      <RecipeCard recipe={selectedDish} />
+      {/* <DropdownMenu recipes={recList} setSelectedDish={setSelectedDish} /> */}
+      <SearchBar recipes={recipes} setSelectedDish={setSelectedDish} />
+      {selectedDish && <RecipeCard recipe={selectedDish} />}
     </div>
   );
 };

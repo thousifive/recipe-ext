@@ -23,13 +23,13 @@ const RecipeCard = ({ recipe }) => {
           <DishLogo />
           <p className="difficulty">Difficulty: {recipe.difficulty}</p>
         </div>
-        <p>{recipe.shortSummary}</p>
+        <p>{recipe.description}</p>
         <button className="view-button">View Full Recipe</button>
       </div>
       <div className="details">
         <div className="ingredient">
           <p className="ingredients-label">Seafood</p>
-          <p className="ingredient-value">{recipe.seafood}</p>
+          <p className="ingredient-value">{recipe.protein}</p>
         </div>
         <div className="ingredient">
             <p className="ingredients-label">Produce</p>
@@ -37,11 +37,11 @@ const RecipeCard = ({ recipe }) => {
           </div>
           <div className="ingredient">
             <p className="ingredients-label">Spices</p>
-            <p className="ingredient-value gradient">{recipe.spices}</p>
+            <p className="ingredient-value gradient">{recipe.spice}</p>
           </div>
           <div className="ingredient">
             <p className="ingredients-label">Olive Oil</p>
-            <p className="ingredient-value gradient">{recipe.oliveOil}</p>
+            <p className="ingredient-value gradient">{recipe.cookingOil}</p>
           </div>
           <div className="ingredient">
             <p className="ingredients-label">Volume/Weight</p>

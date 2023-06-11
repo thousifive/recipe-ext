@@ -1,0 +1,11 @@
+.search-result {
+  padding: 10px 20px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.search-result:hover {
+  background-color: #14CFC3;
+  color: black;
+}
