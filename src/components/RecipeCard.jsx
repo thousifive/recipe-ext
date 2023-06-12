@@ -6,11 +6,43 @@ import { ReactComponent as ExternalLogo } from "./../assets/external.svg";
 import { ReactComponent as DishLogo } from "./../assets/paella 1.svg";
 import "./RecipeCard.css";
 
-const RecipeCard = ({ recipe }) => {
+const difficultyLevels = ["Easy", "Medium", "Hard"];
+
+const RecipeCard = React.memo(({ recipe }) => {
+  
+  if (!recipe) {
+    return (
+      <section className="recipe-container">
+        <div className="no-dish">
+          <div className="title-no-dish">
+            <DishLogo />
+            <h3>Recipe Book</h3>
+          </div>
+          <h4>Selected No Dish</h4>
+          <p>Please select one of the dish from above search bar to view</p>
+        </div>
+      </section>
+    );
+  }
+
+  const {
+    name,
+    description,
+    difficulty,
+    protein,
+    produce,
+    spice,
+    cookingOil,
+    volume,
+    serves,
+    authenticity,
+    stock,
+  } = recipe;
+
   return (
-    <div className="recipe-container">
+    <section className="recipe-container">
       <div className="title-container">
-        <div className="title">{recipe.name}</div>
+        <h2 className="title">{name}</h2>
         <div className="sharing-icons">
           <TwitterLogo />
           <TelegramLogo />
@@ -21,47 +53,49 @@ const RecipeCard = ({ recipe }) => {
       <div className="summary">
         <div className="diff-container">
           <DishLogo />
-          <p className="difficulty">Difficulty: {recipe.difficulty}</p>
+          <p className="difficulty">
+            Difficulty: {difficultyLevels[difficulty]}
+          </p>
         </div>
-        <p>{recipe.description}</p>
+        <p>{description}</p>
         <button className="view-button">View Full Recipe</button>
       </div>
       <div className="details">
         <div className="ingredient">
           <p className="ingredients-label">Seafood</p>
-          <p className="ingredient-value">{recipe.protein}</p>
+          <p className="ingredient-value">{protein}</p>
         </div>
         <div className="ingredient">
-            <p className="ingredients-label">Produce</p>
-            <p className="ingredient-value produce">{recipe.produce}</p>
-          </div>
-          <div className="ingredient">
-            <p className="ingredients-label">Spices</p>
-            <p className="ingredient-value gradient">{recipe.spice}</p>
-          </div>
-          <div className="ingredient">
-            <p className="ingredients-label">Olive Oil</p>
-            <p className="ingredient-value gradient">{recipe.cookingOil}</p>
-          </div>
-          <div className="ingredient">
-            <p className="ingredients-label">Volume/Weight</p>
-            <p className="ingredient-value">{recipe.volume}</p>
-          </div>
-          <div className="ingredient">
-            <p className="ingredients-label">Serves</p>
-            <p className="ingredient-value">{recipe.serves}</p>
-          </div>
-          <div className="ingredient">
-            <p className="ingredients-label">Authenticity</p>
-            <p className="ingredient-value gradient">{recipe.authenticity}</p>
-          </div>
-          <div className="ingredient">
-            <p className="ingredients-label">Stock</p>
-            <p className="ingredient-value gradient">{recipe.stock}</p>
-          </div>
+          <p className="ingredients-label">Produce</p>
+          <p className="ingredient-value produce">{produce}</p>
+        </div>
+        <div className="ingredient">
+          <p className="ingredients-label">Spices</p>
+          <p className="ingredient-value gradient">{spice}</p>
+        </div>
+        <div className="ingredient">
+          <p className="ingredients-label">Olive Oil</p>
+          <p className="ingredient-value gradient">{cookingOil}</p>
+        </div>
+        <div className="ingredient">
+          <p className="ingredients-label">Volume/Weight</p>
+          <p className="ingredient-value">{volume}</p>
+        </div>
+        <div className="ingredient">
+          <p className="ingredients-label">Serves</p>
+          <p className="ingredient-value">{serves}</p>
+        </div>
+        <div className="ingredient">
+          <p className="ingredients-label">Authenticity</p>
+          <p className="ingredient-value gradient">{authenticity}</p>
+        </div>
+        <div className="ingredient">
+          <p className="ingredients-label">Stock</p>
+          <p className="ingredient-value gradient">{stock}</p>
+        </div>
       </div>
-    </div>
+    </section>
   );
-};
+});
 
 export default RecipeCard;

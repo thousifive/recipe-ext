@@ -8,7 +8,5 @@
     "default_popup": "index.html",
     "default_title": "Open"
   },
-  "permissions": [
-    "scripting"
-  ]
+  "host_permissions": ["https://master-7rqtwti-yj2le3kr2yhmu.uk-1.platformsh.site/*"]
 }

@@ -124,3 +124,21 @@
   background-clip: text;
   text-fill-color: transparent;
 }
+
+.no-dish {
+  text-align: center;
+  border: 0.5px solid white;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #14CFC3;
+  color: black;
+  width: 362px;
+}
+
+.title-no-dish {
+  font-weight: 400;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
