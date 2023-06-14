@@ -1,17 +1,24 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import SearchResult from "./SearchResult";
 import { debounceFn } from "../utils";
+import { getRecipes, getRecipeById } from "../services";
 import "./SearchBar.css";
 
-const API_URL =
-  "https://master-7rqtwti-yj2le3kr2yhmu.uk-1.platformsh.site/yumazoo/recipes";
+const SearchBar = ({ setSelectedDish, searchById }) => {
+  const refEle = useRef(null);
 
-const SearchBar = ({ setSelectedDish }) => {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState(false);
+  const [id, setId] = useState('');
 
-  const debouncedGetRecipes = useCallback(debounceFn(getRecipes, 300), []);
+  useEffect(() => {
+    document.addEventListener("click", handlleClickOutside, true)
+  },[])
+
+  // eslint-disable-next-line
+  const debouncedGetRecipes = useCallback(debounceFn(loadRecipes, 300), []);
 
   useEffect(() => {
     if (searchTerm) {
@@ -21,40 +28,78 @@ const SearchBar = ({ setSelectedDish }) => {
     }
   }, [debouncedGetRecipes, searchTerm]);
 
-  async function getRecipes(searchText) {
+  const handlleClickOutside = (e) => {
+    if(!refEle.current?.contains(e.target)) setResults(false);
+  }
+
+  async function loadRecipes(searchText) {
     try {
-      const response = await fetch(API_URL);
-      const { message } = await response.json();
-      const filteredRecipes = message?.filter((rec) =>
-        rec.name.toLowerCase().includes(searchText.toLowerCase())
-      ) ?? [];
-      setRecipes(filteredRecipes);
+      const allRecipes = await getRecipes();
+      if (allRecipes) {
+        const filteredRecipes =
+          allRecipes.filter((rec, id) => {
+            if (rec.name.toLowerCase().includes(searchText.toLowerCase())) {
+              rec.id = id;
+              return rec;
+            }
+          }) ?? [];
+        setRecipes(filteredRecipes);
+        setResults(true);
+      } else {
+        setRecipes([]);
+        setResults(false);
+      }
     } catch (e) {
       alert(e);
       console.error(e);
     }
   }
 
+  const handleSearch = async () => {
+    const recipe = await getRecipeById(id);
+    if (recipe) {
+      recipe.id = id;
+      setSelectedDish(recipe);
+      setId('');
+      setSearchTerm('');
+    } else setId('');
+  };
+
   return (
     <div className="search-container">
       <div className="search-bar">
         <FaSearch id="search-icon " />
-        <input
-          type="text"
-          placeholder="Search cousine..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        {!searchById ? (
+          <input
+            type="text"
+            placeholder="Search cousine..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        ) : (
+          <div className="search-by-id">
+            <input
+              type="number"
+              placeholder="Enter Id"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            />
+            <button className="search-button" disabled={id<0 || id===""} onClick={handleSearch}>
+              Search
+            </button>
+          </div>
+        )}
       </div>
-      {searchTerm && (
-        <div className="search-results">
+      {!searchById && searchTerm && results && (
+        <div className="search-results" ref={refEle}>
           {recipes.length > 0 ? (
             recipes.map((sug, id) => (
               <SearchResult
-                key={id}
+                key={sug.id}
                 suggestion={sug}
                 setSelectedDish={setSelectedDish}
                 setSearchTerm={setSearchTerm}
+                setResults={setResults}
               />
             ))
           ) : (

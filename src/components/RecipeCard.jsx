@@ -26,6 +26,7 @@ const RecipeCard = React.memo(({ recipe }) => {
   }
 
   const {
+    id,
     name,
     description,
     difficulty,
@@ -42,7 +43,7 @@ const RecipeCard = React.memo(({ recipe }) => {
   return (
     <section className="recipe-container">
       <div className="title-container">
-        <h2 className="title">{name}</h2>
+        <h2 className="title">{id}: {name}</h2>
         <div className="sharing-icons">
           <TwitterLogo />
           <TelegramLogo />

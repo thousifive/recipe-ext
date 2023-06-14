@@ -1,0 +1,124 @@
+.modal-background {
+  height: 686px;
+  width: 435px;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: black;
+}
+
+.modal-container {
+  background-color: #131823;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgb(0 0 0 / 35%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 600px;
+  margin-top: 17px;
+  padding: 10px;
+  justify-content: center;
+  width: 350px;
+}
+
+.buttons {
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.save-button {
+  width: 100px;
+  height: 40px;
+  padding: 5px;
+  background-color: #14CFC3;
+  border-radius: 6px;
+  color: white;
+}
+
+.cancel-button {
+  width: 100px;
+  height: 40px;
+  padding: 5px;
+  background-color: #E76161;
+  border-radius: 6px;
+  color: white;
+}
+
+.form-add {
+  /* background-color: white; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.form-title {
+  text-align: center;
+  font-weight: 600;
+}
+
+.name-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.name-desc > input {
+  padding: 5px 10px;
+  width: 300px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 6px;
+  color: white;
+}
+
+.ingredients {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+
+.ingredients > input {
+  padding: 5px 10px;
+  width: 145px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 6px;
+  color: white;
+}
+
+#desc {
+  padding: 5px 10px;
+  /* min-width: 300px;
+  max-width: 400px; */
+  /* height: 40px; */
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 6px;
+  color: white;
+  resize: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
